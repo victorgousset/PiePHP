@@ -5,6 +5,11 @@ class UserController
 {
     public function test()
     {
-        echo "echo controller !!!";
+        echo "echo controller !!!!";
+    }
+
+    public function indexAction()
+    {
+        echo "indexAction";
     }
 }
