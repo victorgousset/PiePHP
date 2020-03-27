@@ -6,7 +6,7 @@ use UserController;
 class Router
 {
 
-    private $class;
+    private static $routes;
 
     public function __construct()
     {
@@ -35,9 +35,14 @@ class Router
         }
     }
 
-    public function Connect()
+    public static function Connect($url, $route)
     {
+        self::$routes[$url] = $route;
+    }
 
+    public static function get($url)
+    {
+        return array_key_exists($url, self::$routes) ? self::$routes[$url] : null;
     }
 
 }
