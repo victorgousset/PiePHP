@@ -1,9 +1,10 @@
 <?php
 
-
 class UserController
 {
     private static $_render = "";
+
+    private $bdd;
 
     public function __construct()
     {
@@ -12,7 +13,23 @@ class UserController
 
     public function loginAction()
     {
-        echo $var;
+        echo "<form method=\"POST\">
+                    <label>Email: <input type=\"text\" name=\"email\"></label>
+                    <label>Password: <input type=\"password\" name=\"password\"></label>
+                    <input type=\"submit\" value=\"S'inscrire\" name=\"submit\">
+                </form>";
+
+        if(isset($_POST['submit']))
+        {
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+
+            if(filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                $registerUser = new UserModel();
+                $registerUser->login($email, $password);
+            }
+        }
     }
 
     public function registerAction()
