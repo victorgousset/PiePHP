@@ -1,5 +1,6 @@
 <?php
 
+
 class UserController
 {
     private static $_render = "";
@@ -9,19 +10,30 @@ class UserController
         self::$_render = "";
     }
 
-    public function test()
+    public function loginAction()
     {
-        echo "echo controller !!!!";
+        echo $var;
     }
 
-    public function indexAction()
+    public function registerAction()
     {
-        echo "indexAction";
-    }
+        echo "<form method=\"POST\">
+                    <label>Email: <input type=\"text\" name=\"email\"></label>
+                    <label>Password: <input type=\"password\" name=\"password\"></label>
+                    <input type=\"submit\" value=\"S'inscrire\" name=\"submit\">
+                </form>";
 
-    public function addAction()
-    {
-        echo "addAction methode";
+        if(isset($_POST['submit']))
+        {
+            $email = htmlspecialchars($_POST['email']);
+            $password = htmlspecialchars($_POST['password']);
+
+            if(filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                $registerUser = new UserModel();
+                $registerUser->save($email, $password);
+            }
+        }
     }
 
     protected function Render($view, $scope = [])
