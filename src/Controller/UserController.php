@@ -3,12 +3,11 @@
 class UserController
 {
     private static $_render = "";
-
-    private $bdd;
+    private $render;
 
     public function __construct()
     {
-        self::$_render = "";
+        $this->render = self::$_render;
     }
 
     public function loginAction()
@@ -26,8 +25,15 @@ class UserController
 
             if(filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-                $registerUser = new UserModel();
-                $registerUser->login($email, $password);
+                if(!empty($email) && !empty($password))
+                {
+                    $registerUser = new UserModel();
+                    $registerUser->login($email, $password);
+                } else {
+                    echo "Tous les champs ne sont pas remplis";
+                }
+            } else {
+                echo "Adresse mail non valide";
             }
         }
     }
@@ -47,8 +53,15 @@ class UserController
 
             if(filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-                $registerUser = new UserModel();
-                $registerUser->save($email, $password);
+                if(!empty($email) && !empty($password))
+                {
+                    $registerUser = new UserModel();
+                    $registerUser->save($email, $password);
+                } else {
+                 echo "Tous les champs ne sont pas remplis";
+                }
+            } else {
+                echo "Adresse mail non valide";
             }
         }
     }

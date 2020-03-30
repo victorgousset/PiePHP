@@ -1,6 +1,6 @@
 <?php
 
-class UserModel extends Database
+class UserModel extends Entity
 {
     private $email;
     private $password;
@@ -12,7 +12,8 @@ class UserModel extends Database
         $this->email = $email;
         $this->password = $password;
 
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $saveUser = $this->bdd->prepare("INSERT INTO users(email, password) VALUES(?, ?)");
         $saveUser->execute(array($this->email, $this->password));
@@ -23,7 +24,8 @@ class UserModel extends Database
         $this->email = $email;
         $this->password = $password;
 
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $loginUser = $this->bdd->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
         $loginUser->execute(array($this->email, $this->password));
@@ -36,7 +38,8 @@ class UserModel extends Database
 
     public function create($email, $password)
     {
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $saveUser = $this->bdd->prepare("INSERT INTO users(email, password) VALUES(?, ?)");
         $saveUser->execute(array($email, $password));
@@ -47,7 +50,8 @@ class UserModel extends Database
 
     public function read($id)
     {
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $read = $this->bdd->prepare("SELECT * FROM users WHERE id = ?");
         $read->execute(array($id));
@@ -60,7 +64,8 @@ class UserModel extends Database
 
     public function update($id, $column, $value)
     {
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $request = "UPDATE users SET $column = $value WHERE id = $id";
         $update = $this->bdd->prepare($request);
@@ -69,7 +74,8 @@ class UserModel extends Database
 
     public function delete($id)
     {
-        $this->bdd = $this->getPDO();
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
 
         $delete = $this->bdd->prepare("DELETE FROM users WHERE id = ?");
         $delete->execute(array($id));
