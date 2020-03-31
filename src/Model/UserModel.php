@@ -33,6 +33,8 @@ class UserModel extends Entity
         if($loginUser->rowCount() == 1)
         {
             echo "OK !";
+        } else {
+            echo "Mauvais login ou mot de passe";
         }
     }
 

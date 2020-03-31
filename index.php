@@ -12,4 +12,4 @@ $app = new Core();
 $app->run();
 
 $routeur = new Router();
-$routeur->Dynamique();
+//$routeur->Dynamique();

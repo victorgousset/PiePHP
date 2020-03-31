@@ -2,12 +2,19 @@
 
 class UserController
 {
-    private static $_render = "";
-    private $render;
 
     public function __construct()
     {
-        $this->render = self::$_render;
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        require '././Core/Controller.php';
+        $t = new Controller('login');
+    }
+
+    public function testAction()
+    {
+        echo "e";
     }
 
     public function loginAction()
@@ -27,8 +34,10 @@ class UserController
             {
                 if(!empty($email) && !empty($password))
                 {
+                    /*
                     $registerUser = new UserModel();
-                    $registerUser->login($email, $password);
+                    $registerUser->login($email, $password); */
+                    echo "conncecte";
                 } else {
                     echo "Tous les champs ne sont pas remplis";
                 }
@@ -55,9 +64,11 @@ class UserController
             {
                 if(!empty($email) && !empty($password))
                 {
+                    /*
                     $registerUser = new UserModel();
-                    $registerUser->save($email, $password);
-                } else {
+                    $registerUser->save($email, $password); */
+                    echo "enregistrer";
+                    } else {
                  echo "Tous les champs ne sont pas remplis";
                 }
             } else {
@@ -66,18 +77,4 @@ class UserController
         }
     }
 
-    protected function Render($view, $scope = [])
-    {
-        extract($scope);
-        $f = implode(DIRECTORY_SEPARATOR , [dirname(__DIR__),'src','View', str_replace('Controller','', basename(get_class($this))), $view]) .'.php';
-        if (file_exists($f))
-        {
-            ob_start();
-            include($f);
-            $view = ob_get_clean();
-            ob_start ();
-            include(implode(DIRECTORY_SEPARATOR , [dirname(__DIR__),'src','View','index']) .'.php');
-            self::$_render = ob_get_clean();
-        }
-    }
 }

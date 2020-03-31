@@ -1,9 +1,5 @@
 <?php
 
-use Router;
-use UserController;
-use AppController;
-
 class Core
 {
     public function __construct()

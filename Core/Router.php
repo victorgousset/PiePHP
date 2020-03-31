@@ -1,17 +1,8 @@
 <?php
 
-use UserController;
-//use AppController;
-
 class Router
 {
-
     private static $routes;
-
-    public function __construct()
-    {
-        require './src/Controller/UserController.php';
-    }
 
     public function Dynamique()
     {
@@ -23,7 +14,7 @@ class Router
         if ($class == "User" && strlen($methode) == 0)
         {
             $user = new UserController();
-            $user->indexAction();
+            $user->loginAction();
         } else {
             if (class_exists($class) == true && method_exists($class, $methode) == true) {
                 echo $class . "->" . $methode . "<br>";
