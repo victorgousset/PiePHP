@@ -2,8 +2,8 @@
 
 function Core()
 {
-    require 'Core.php';
-    require 'Router.php';
+    require_once 'Core.php';
+    require_once 'Router.php';
 }
 
 spl_autoload_register("Core");

@@ -1,5 +1,8 @@
 <?php
 
+require_once '././Core/Entity.php';
+require_once '././Core/Database.php';
+
 class UserModel extends Entity
 {
     private $email;
@@ -9,6 +12,9 @@ class UserModel extends Entity
 
     public function save($email, $password)
     {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         $this->email = $email;
         $this->password = $password;
 

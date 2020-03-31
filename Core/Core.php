@@ -4,9 +4,9 @@ class Core
 {
     public function __construct()
     {
-        require './src/routes.php';
-        require './src/Controller/UserController.php';
-        require './src/Controller/AppController.php';
+        require_once './src/routes.php';
+        require_once './src/Controller/UserController.php';
+        require_once './src/Controller/AppController.php';
     }
 
     public function run()

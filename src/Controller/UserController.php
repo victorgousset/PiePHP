@@ -8,7 +8,8 @@ class UserController
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
-        require '././Core/Controller.php';
+        require_once '././Core/Controller.php';
+        require_once '././src/Model/UserModel.php';
     }
 
     public function loginAction()
@@ -39,6 +40,9 @@ class UserController
 
     public function registerAction()
     {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         $form = new Controller('register');
 
         if(isset($_POST['submit']))
@@ -50,10 +54,8 @@ class UserController
             {
                 if(!empty($email) && !empty($password))
                 {
-                    /*
                     $registerUser = new UserModel();
-                    $registerUser->save($email, $password); */
-                    echo "enregistrer";
+                    $registerUser->save($email, $password);
                     } else {
                  echo "Tous les champs ne sont pas remplis";
                 }
