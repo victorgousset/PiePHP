@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Formulaire de connexion</h1>
+<h1>Formulaire d'inscription</h1>
 
 <form method="POST">
     <label>Email: <input type="text" name="email"></label>

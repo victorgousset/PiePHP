@@ -3,7 +3,7 @@
 class Entity
 {
 
-    public function __construct($params = [])
+    public function __construct($params)
     {
 
     }

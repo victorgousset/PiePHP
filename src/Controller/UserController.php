@@ -9,21 +9,11 @@ class UserController
         ini_set('display_errors', 1);
 
         require '././Core/Controller.php';
-        $t = new Controller('login');
-    }
-
-    public function testAction()
-    {
-        echo "e";
     }
 
     public function loginAction()
     {
-        echo "<form method=\"POST\">
-                    <label>Email: <input type=\"text\" name=\"email\"></label>
-                    <label>Password: <input type=\"password\" name=\"password\"></label>
-                    <input type=\"submit\" value=\"S'inscrire\" name=\"submit\">
-                </form>";
+        $form = new Controller('login');
 
         if(isset($_POST['submit']))
         {
@@ -49,11 +39,7 @@ class UserController
 
     public function registerAction()
     {
-        echo "<form method=\"POST\">
-                    <label>Email: <input type=\"text\" name=\"email\"></label>
-                    <label>Password: <input type=\"password\" name=\"password\"></label>
-                    <input type=\"submit\" value=\"S'inscrire\" name=\"submit\">
-                </form>";
+        $form = new Controller('register');
 
         if(isset($_POST['submit']))
         {
