@@ -1,20 +1,18 @@
 <?php
 
-class UserController
+require_once '././Core/Controller.php';
+
+class UserController extends Controller
 {
 
     public function __construct()
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-
-        require_once '././Core/Controller.php';
         require_once '././src/Model/UserModel.php';
     }
 
     public function loginAction()
     {
-        $form = new Controller('login');
+        $this->Render('login');
 
         if(isset($_POST['submit']))
         {
@@ -25,10 +23,8 @@ class UserController
             {
                 if(!empty($email) && !empty($password))
                 {
-                    /*
                     $registerUser = new UserModel();
-                    $registerUser->login($email, $password); */
-                    echo "conncecte";
+                    $registerUser->login($email, $password);
                 } else {
                     echo "Tous les champs ne sont pas remplis";
                 }
@@ -40,10 +36,7 @@ class UserController
 
     public function registerAction()
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-
-        $form = new Controller('register');
+        $this->Render('register');
 
         if(isset($_POST['submit']))
         {

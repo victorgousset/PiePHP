@@ -12,9 +12,6 @@ class UserModel extends Entity
 
     public function save($email, $password)
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-
         $this->email = $email;
         $this->password = $password;
 
@@ -23,6 +20,8 @@ class UserModel extends Entity
 
         $saveUser = $this->bdd->prepare("INSERT INTO users(email, password) VALUES(?, ?)");
         $saveUser->execute(array($this->email, $this->password));
+
+        echo "Inscription reussite";
     }
 
     public function login($email, $password)

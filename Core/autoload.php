@@ -7,3 +7,6 @@ function Core()
 }
 
 spl_autoload_register("Core");
+
+//autoloader
+//Routeur dynamique
