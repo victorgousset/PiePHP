@@ -4,7 +4,6 @@ require_once '././Core/Controller.php';
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         require_once '././src/Model/UserModel.php';

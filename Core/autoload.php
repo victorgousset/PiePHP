@@ -1,12 +1,20 @@
 <?php
 
-function Core()
+class Autoloader
 {
-    require_once 'Core.php';
-    require_once 'Router.php';
+    static function register()
+    {
+        spl_autoload_register(array(__CLASS__, 'autoload'));
+    }
+
+    static function autoload($class)
+    {
+        if(substr($class, -10) == "Controller")
+        {
+            require_once './src/Controller/' . $class . '.php';
+        } else {
+            require_once $class . '.php';
+        }
+    }
 }
-
-spl_autoload_register("Core");
-
-//autoloader
 //Routeur dynamique
