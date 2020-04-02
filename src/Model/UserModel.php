@@ -43,7 +43,7 @@ class UserModel extends Entity
         }
     }
 
-    public function create($email, $password)
+    public function createUser($email, $password)
     {
         $bdd = new Database();
         $this->bdd = $bdd->getPDO();
@@ -55,7 +55,7 @@ class UserModel extends Entity
         return $getId->execute(array($email, $password));
     }
 
-    public function read($id)
+    public function readUser($id)
     {
         $bdd = new Database();
         $this->bdd = $bdd->getPDO();
@@ -69,7 +69,7 @@ class UserModel extends Entity
         return null;
     }
 
-    public function update($id, $column, $value)
+    public function updateUser($id, $column, $value)
     {
         $bdd = new Database();
         $this->bdd = $bdd->getPDO();
@@ -79,7 +79,7 @@ class UserModel extends Entity
         $update->execute();
     }
 
-    public function delete($id)
+    public function deleteUser($id)
     {
         $bdd = new Database();
         $this->bdd = $bdd->getPDO();
@@ -88,7 +88,7 @@ class UserModel extends Entity
         $delete->execute(array($id));
     }
 
-    public function read_all()
+    public function read_all_user()
     {
         $read = $this->bdd->prepare("SELECT * FROM users");
         $read->execute();
