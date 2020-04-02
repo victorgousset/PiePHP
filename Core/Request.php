@@ -7,7 +7,10 @@ class Request
         if(count($_POST) > 0)
         {
             $im = implode(' ', $_POST);
-            return htmlentities($im);
+            htmlentities($im);
+            trim($im);
+            stripcslashes($im);
+            return filter_var($im, FILTER_SANITIZE_STRING);
         }
         return null;
     }
@@ -17,7 +20,10 @@ class Request
         if(count($_GET) > 0)
         {
             $im = implode(' ', $_GET);
-            return htmlentities($im);
+            htmlentities($im);
+            trim($im);
+            stripcslashes($im);
+            return filter_var($im, FILTER_SANITIZE_STRING);
         }
         return null;
     }
