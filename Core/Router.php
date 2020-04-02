@@ -11,18 +11,12 @@ class Router
         $class = ucfirst($url[2]);
         $methode = $url[3];
 
-        if ($class == "User" && strlen($methode) == 0)
-        {
-            $user = new UserController();
-            $user->loginAction();
+        if (class_exists($class) == true && method_exists($class, $methode) == true) {
+            echo $class . "->" . $methode . "<br>";
+            $controler = new $class();
+            $controler->$methode();
         } else {
-            if (class_exists($class) == true && method_exists($class, $methode) == true) {
-                echo $class . "->" . $methode . "<br>";
-                $controler = new $class();
-                $controler->$methode();
-            } else {
-                echo "404";
-            }
+            echo "404";
         }
     }
 
