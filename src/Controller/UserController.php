@@ -9,11 +9,6 @@ class UserController extends Controller
         require_once '././src/Model/UserModel.php';
     }
 
-    public function testEntityAction()
-    {
-        $test = new Entity(array('articles', array('titre' => 'titre article', 'author' => 'me', 'date' => 'today')));
-    }
-
     public function loginAction()
     {
         $this->Render('login');
