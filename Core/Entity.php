@@ -4,79 +4,79 @@ class Entity
 {
     private $bdd;
 
-    public function create($table, $fields)
+    public function create($fields)
     {
-        $bdd = new Database();
-        $this->bdd = $bdd->getPDO();
-
-        if($table == "users")
+        if(is_array($fields))
         {
-            $this->bdd->prepare("INSERT INTO users VALUES(?, ?, ?)");
-        } elseif($table == 'articles')
-        {
-
-        }
-
-    }
-
-    public function read($table, $id)
-    {
-        $bdd = new Database();
-        $this->bdd = $bdd->getPDO();
-
-        $request = 'SELECT * FROM ' . $table . 'WHERE id = ' . $id;
-        $req = $this->bdd->prepare($request);
-        return $req->execute();
-    }
-
-    public function update($table, $id, $fields)
-    {
-
-    }
-
-    public function delete($table, $id)
-    {
-        $bdd = new Database();
-        $this->bdd = $bdd->getPDO();
-
-        $request = 'DELETE FROM ' . $table . 'WHERE id = ' . $id;
-        $req = $this->bdd->prepare($request);
-        $req->execute();
-    }
-
-
-
-    /*
-     *
-     *
-     *    public function prepareReques()
-    {
-        $count = $this->countElemene();
-        $request = "";
-
-        if($count != 0)
-        {
-            $i = 0;
-            for($i; $i < $count; $i++)
+            if(array_key_exists('table', $fields))
             {
-                $request .= " email = '" .  . "'";
+                $bdd = new Database();
+                $this->bdd = $bdd->getPDO();
+
+                $nbr_param = count($fields);
+                $values = "";
+
+                for($i = 0; $i <= $nbr_param; $i++)
+                {
+                    $values .= " ?,";
+                }
+
+                $table = $fields['table'];
+
+                $req = $this->bdd->prepare('INSERT INTO ' . $table . ' VALUES(' . $values . ')');
+                $req->execute());
+                //marche pas encore
             }
-            return $request;
+        } else {
+            return false;
         }
         return null;
     }
-     *
-     *
-         public function assembleRequest()
+
+    public function read($fields)
     {
+        if(is_array($fields))
+        {
+            if(array_key_exists('table', $fields) && array_key_exists('id', $fields))
+            {
+                $bdd = new Database();
+                $this->bdd = $bdd->getPDO();
 
+                $req = $this->bdd->prepare("SELECT * FROM " . $fields['table'] . ' WHERE id = ' . $fields['id']);
+                $req->execute();
+            }
+        } else {
+            return false;
+        }
+    return null;
+    }
 
-        $request = "SELECT * FROM user WHERE ";
-
-
+    public function update($fields)
+    {
+        if(is_array($fields))
+        {
+            //
+        } else {
+            return false;
+        }
         return null;
     }
-     *
-     *
-     */
+
+    public function delete($fields)
+    {
+        if(is_array($fields))
+        {
+            if(array_key_exists('id', $fields) && array_key_exists('table', $fields))
+            {
+                $bdd = new Database();
+                $this->bdd = $bdd->getPDO();
+
+                $req = $this->bdd->prepare('DELETE FROM ' . $fields['table'] . ' WHERE id = ' . $fields['id']);
+                $req->execute();
+            }
+        } else {
+            return false;
+        }
+        return null;
+    }
 }

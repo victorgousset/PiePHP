@@ -43,6 +43,16 @@ class UserModel extends Entity
         }
     }
 
+    public function EmailAlreadyExist($email)
+    {
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
+
+        $verif_email = $this->bdd->prepare("SELECT * FROM users WHERE email = ?");
+        $verif_email->execute(array($email));
+        return $verif_email->rowCount();
+    }
+
     public function createUser($email, $password)
     {
         $bdd = new Database();
