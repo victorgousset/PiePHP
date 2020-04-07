@@ -69,6 +69,14 @@ class Entity
                 $bdd = new Database();
                 $this->bdd = $bdd->getPDO();
 
+                $nbr_param = count($fields);
+                $values = "";
+
+                for($i = 0; $i <= $nbr_param; $i++)
+                {
+                    $values .= " test = ?";
+                }
+
                 $this->bdd->prepare("UPDATE " . $fields['table'] ." SET");
                 //marche pas encore
             }
