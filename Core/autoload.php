@@ -17,4 +17,3 @@ class Autoloader
         }
     }
 }
-//Routeur dynamique

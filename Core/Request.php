@@ -12,7 +12,6 @@ class Request
             stripcslashes($im);
             return filter_var($im, FILTER_SANITIZE_STRING);
         }
-        return null;
     }
 
     public function checkGET()
@@ -25,6 +24,5 @@ class Request
             stripcslashes($im);
             return filter_var($im, FILTER_SANITIZE_STRING);
         }
-        return null;
     }
 }

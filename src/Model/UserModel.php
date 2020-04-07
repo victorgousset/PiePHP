@@ -1,6 +1,5 @@
 <?php
 
-require_once '././Core/Entity.php';
 require_once '././Core/Database.php';
 
 class UserModel extends Entity

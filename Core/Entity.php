@@ -1,5 +1,7 @@
 <?php
 
+//Marche si 2 premiers key de $fields sont 'id' et la table;
+
 class Entity
 {
     private $bdd;
@@ -22,15 +24,19 @@ class Entity
                 }
 
                 $table = $fields['table'];
+                $col = "";
 
-                $req = $this->bdd->prepare('INSERT INTO ' . $table . ' VALUES(' . $values . ')');
-                $req->execute());
-                //marche pas encore
+                for($i = 2; $i <= $nbr_param; $i++)
+                {
+                    $col .= " " . $fields[$i] . ",";
+                }
+
+                $req = $this->bdd->prepare('INSERT INTO ' . $table . '('. $col.') VALUES(' . $values . ')');
+                $req->execute(array($col));
             }
         } else {
             return false;
         }
-        return null;
     }
 
     public function read($fields)
@@ -44,22 +50,31 @@ class Entity
 
                 $req = $this->bdd->prepare("SELECT * FROM " . $fields['table'] . ' WHERE id = ' . $fields['id']);
                 $req->execute();
+                while($result = $req->fetch())
+                {
+                    echo $result . "<br>";
+                }
             }
         } else {
             return false;
         }
-    return null;
     }
 
     public function update($fields)
     {
         if(is_array($fields))
         {
-            //
+            if(array_key_exists('table', $fields) && array_key_exists('id', $fields))
+            {
+                $bdd = new Database();
+                $this->bdd = $bdd->getPDO();
+
+                $this->bdd->prepare("UPDATE " . $fields['table'] ." SET");
+                //marche pas encore
+            }
         } else {
             return false;
         }
-        return null;
     }
 
     public function delete($fields)
@@ -77,6 +92,5 @@ class Entity
         } else {
             return false;
         }
-        return null;
     }
 }
