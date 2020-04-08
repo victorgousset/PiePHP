@@ -9,6 +9,8 @@ class UserModel extends Entity
 
     private $bdd;
 
+    private static $relation = [];
+
     public function save($email, $password)
     {
         $this->email = $email;
@@ -99,12 +101,15 @@ class UserModel extends Entity
 
     public function read_all_user()
     {
+        $bdd = new Database();
+        $this->bdd = $bdd->getPDO();
+
         $read = $this->bdd->prepare("SELECT * FROM users");
         $read->execute();
-        while ($result = $read->fetch())
+        while($result = $read->fetch())
         {
-            return $result;
+            var_dump($result);
+            echo "<br>";
         }
-        return null;
     }
 }

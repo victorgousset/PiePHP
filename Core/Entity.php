@@ -74,11 +74,13 @@ class Entity
 
                 for($i = 0; $i <= $nbr_param; $i++)
                 {
-                    $values .= " test = ?";
+                    $values .= ", " . $fields[$i];
                 }
 
                 $this->bdd->prepare("UPDATE " . $fields['table'] ." SET");
-                //marche pas encore
+//marche tjrs pas
+
+
             }
         } else {
             return false;

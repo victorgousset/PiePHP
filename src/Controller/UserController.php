@@ -57,4 +57,15 @@ class UserController extends Controller
         }
     }
 
+    public function showuserAction()
+    {
+        $id = substr($_SERVER['REDIRECT_URL'], 13);
+    }
+
+    public function listAllUserAction()
+    {
+        $model = new UserModel();
+        $model->read_all_user();
+
+    }
 }
