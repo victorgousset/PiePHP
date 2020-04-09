@@ -1,6 +1,6 @@
 <?php
 
-require_once '././Core/Database.php';
+//require_once '././Core/Database.php';
 
 class UserModel extends Entity
 {
@@ -77,7 +77,6 @@ class UserModel extends Entity
         {
             return $result;
         }
-        return null;
     }
 
     public function updateUser($id, $column, $value)
@@ -106,10 +105,9 @@ class UserModel extends Entity
 
         $read = $this->bdd->prepare("SELECT * FROM users");
         $read->execute();
-        while($result = $read->fetch())
+        while($result = $read->fetchAll())
         {
-            var_dump($result);
-            echo "<br>";
+            return $result;
         }
     }
 }

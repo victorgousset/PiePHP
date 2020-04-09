@@ -57,15 +57,24 @@ class UserController extends Controller
         }
     }
 
-    public function showuserAction()
-    {
-        $id = substr($_SERVER['REDIRECT_URL'], 13);
-    }
-
     public function listAllUserAction()
     {
-        $model = new UserModel();
-        $model->read_all_user();
+        $e = "variable";
+        $a = "var";
 
+        $model = new UserModel();
+        $result = $model->read_all_user();
+
+        $this->Render('show', [$result]);
+    }
+
+    public function DetailUserAction()
+    {
+        $model = new UserModel();
+        $id = substr($_SERVER['REDIRECT_URL'], 10);
+        var_dump($id);
+        //$model->readUser();
+        var_dump($_POST);
+        $this->Render('details');
     }
 }
