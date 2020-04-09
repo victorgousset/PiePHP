@@ -32,7 +32,17 @@ class Core
             $controler = new $class();
             $controler->$methode();
 
-        } else {
+        } elseif (($route = Router::get($_SERVER['REDIRECT_URL'])) == null) {
+            $idUser = intval(substr($_SERVER['REDIRECT_URL'], 21));
+           // var_dump(substr($_SERVER['REDIRECT_URL'], 13, 7));
+            if(substr($_SERVER['REDIRECT_URL'], 13, 7) == "details" && is_int($idUser) == true) {
+
+                $detailUser = new UserController();
+                $detailUser->DetailUserAction($idUser);
+
+            }
+        }
+        else {
             echo "La route n'existe pas";
         }
     }

@@ -68,13 +68,10 @@ class UserController extends Controller
         $this->Render('show', [$result]);
     }
 
-    public function DetailUserAction()
+    public function DetailUserAction($id)
     {
         $model = new UserModel();
-        $id = substr($_SERVER['REDIRECT_URL'], 10);
-        var_dump($id);
-        //$model->readUser();
-        var_dump($_POST);
+        var_dump($model->readUser($id));
         $this->Render('details');
     }
 }

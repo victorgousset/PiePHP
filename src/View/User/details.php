@@ -10,5 +10,12 @@
 
 <h1>Details</h1>
 
+
+<?php
+
+ var_dump($_POST);
+
+?>
+
 </body>
 </html>
