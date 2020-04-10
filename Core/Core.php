@@ -6,8 +6,6 @@ class Core
     {
         require_once 'autoload.php';
         require_once './src/routes.php';
-        //require_once './src/Controller/UserController.php';
-        //require_once './src/Controller/AppController.php';
     }
 
     public function run()
@@ -39,11 +37,12 @@ class Core
 
                 $detailUser = new UserController();
                 $detailUser->DetailUserAction($idUser);
-
+            } elseif (substr($_SERVER['REDIRECT_URL'], 13, 6) == "delete" && is_int(intval(substr($_SERVER['REDIRECT_URL'], 20))) == true) {
+                $deleteUser = new UserController();
+                $deleteUser->deleteUserAction(intval(substr($_SERVER['REDIRECT_URL'], 20)));
+            } else {
+                echo "La route n'existe pas";
             }
-        }
-        else {
-            echo "La route n'existe pas";
         }
     }
 }

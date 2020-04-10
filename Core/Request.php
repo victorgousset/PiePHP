@@ -2,6 +2,13 @@
 
 class Request
 {
+
+    public function __construct()
+    {
+        $this->checkPOST();
+        $this->checkGET();
+    }
+
     public function checkPOST()
     {
         if(count($_POST) > 0)

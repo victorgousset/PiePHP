@@ -7,6 +7,7 @@ class UserController extends Controller
     public function __construct()
     {
         require_once '././src/Model/UserModel.php';
+        $request = new Request();
     }
 
     public function loginAction()
@@ -59,9 +60,6 @@ class UserController extends Controller
 
     public function listAllUserAction()
     {
-        $e = "variable";
-        $a = "var";
-
         $model = new UserModel();
         $result = $model->read_all_user();
 
@@ -71,7 +69,17 @@ class UserController extends Controller
     public function DetailUserAction($id)
     {
         $model = new UserModel();
-        var_dump($model->readUser($id));
-        $this->Render('details');
+        $infoUser = $model->readUser($id);
+
+        $this->Render('details', [$infoUser]);
+    }
+
+    public function deleteUserAction($id)
+    {
+        $model = new UserModel();
+        $model->deleteUser($id);
+        $info = $model->readUser($id);
+
+        $this->Render('delete', [$info]);
     }
 }

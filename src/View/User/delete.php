@@ -8,13 +8,12 @@
 </head>
 <body>
 
-<h1>Details</h1>
-
+<h1>Delete</h1>
 
 <?php
 
- var_dump($scope);
- echo $scope;
+echo "L'utilisateur <b>" . $scope[0]['email'] . "</b> a ete supprime<br>";
+
 ?>
 
 </body>

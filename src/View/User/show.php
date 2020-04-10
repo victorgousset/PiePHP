@@ -12,15 +12,15 @@
 
 <?php
 
-//var_dump($scope[0][1]['email']);
-
 $nbr_user = count($scope[0]);
 
 for($i = 0; $i < $nbr_user; $i++)
 {
     echo $scope[0][$i]['email'];
-    $id = $i + 1;
-    echo " <a href='/PiePHP/user/details/$id'>Details</a><br>";
+    $id = $scope[0][$i]['id'];
+
+    echo " <a href='/PiePHP/user/details/$id'>Details</a>";
+    echo " <a href='/PiePHP/user/delete/$id'>Delete</a><br>";
 }
 
 ?>
