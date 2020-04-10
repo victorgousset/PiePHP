@@ -41,7 +41,8 @@ class Core
                 $deleteUser = new UserController();
                 $deleteUser->deleteUserAction(intval(substr($_SERVER['REDIRECT_URL'], 20)));
             } else {
-                echo "La route n'existe pas";
+                $error = new ErrorController();
+                $error->Error('404');
             }
         }
     }

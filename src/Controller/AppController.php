@@ -1,7 +1,8 @@
 <?php
 
+require_once '././Core/Controller.php';
 
-class AppController
+class AppController extends Controller
 {
     public function indexAction()
     {

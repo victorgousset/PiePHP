@@ -10,6 +10,7 @@ class Controller
 
         $f = implode(DIRECTORY_SEPARATOR , [dirname(__DIR__),'src','View', str_replace('Controller','', basename(get_class($this))), $view]) .'.php';
         //$f == chemin vers la view
+        //var_dump($f);
         if (file_exists($f))
         {
             include($f);
